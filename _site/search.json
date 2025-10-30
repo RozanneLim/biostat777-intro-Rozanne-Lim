@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Rozanne Lim",
+    "section": "",
+    "text": "Hello! I’m a graduate student in the MHS Epidemiology program at Johns Hopkins Bloomberg School of Public Health. I’m interested in data storytelling and using epidemiological data to advance public health initiatives. In my free time, I enjoy cooking, reading, and crafting."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Johns Hopkins Bloomberg School of Public Health | Baltimore, MD\nMHS in Epidemiology | August 2025 - May 2026 (Expected)\nJohns Hopkins University | Baltimore, MD\nB.A. in Public Health Studies & Cognitive Science | August 2021 - December 2024"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Rozanne Lim",
+    "section": "Education 📖",
+    "text": "Education 📖\nJohns Hopkins Bloomberg School of Public Health | Baltimore, MD\nMHS in Epidemiology | August 2025 - May 2026 (Expected)\nJohns Hopkins University | Baltimore, MD\nB.A. in Public Health Studies & Cognitive Science | August 2021 - December 2024"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Rozanne Lim",
+    "section": "Experience 👩🏻‍💻",
+    "text": "Experience 👩🏻‍💻\nBaltimore City Health Department | PHASE Intern |\nJohns Hopkins School of Nursing | Research Assistant | September 2025 - Current\nJohns Hopkins School of Nursing | Research Data Analyst | March 2025 - August 2025\nJohns Hopkins School of Nursing | Bloomberg Distinguished Professor Intern | June 2024 - December 2024\nInstitute for Global Tobacco Control | Research Assistant | April 2022 - January 2025\nCenter for Clinical Trials & Evidence Synthesis | Data System Operator | September 2023 - December 2024"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "",
+    "text": "Johns Hopkins Bloomberg School of Public Health | Baltimore, MD\nMHS in Epidemiology | August 2025 - May 2026 (Expected)\nJohns Hopkins University | Baltimore, MD\nB.A. in Public Health Studies & Cognitive Science | August 2021 - December 2024"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "About",
+    "section": "Experience 👩🏻‍💻",
+    "text": "Experience 👩🏻‍💻\nBaltimore City Health Department | PHASE Intern | November 2025 - Current\nJohns Hopkins School of Nursing | Research Assistant | September 2025 - Current\nJohns Hopkins School of Nursing | Research Data Analyst | March 2025 - August 2025\nJohns Hopkins School of Nursing | Bloomberg Distinguished Professor Intern | June 2024 - December 2024\nInstitute for Global Tobacco Control | Research Assistant | April 2022 - January 2025\nCenter for Clinical Trials & Evidence Synthesis | Data System Operator | September 2023 - December 2024"
+  },
+  {
+    "objectID": "project1.html",
+    "href": "project1.html",
+    "title": "Project 1",
+    "section": "",
+    "text": "Due date: November 7 at 11:59pm\nThe goal of this assignment is to practice some of the skills we have been learning about in class around building data analyses and quarto by building and deploying a Quarto website. You also are asked to practice with some command-line and version control skills more formally.\n\n\nPlease use this Quarto file (.qmd) and fill in the requested components by adding the URLs pointing to the GitHub repositories and deployed websites. Render this file to a HTML file.\nYou will push the .qmd file and rendered HTML file to a private GitHub repostory on GitHub classroom. The link to create a private GitHub repository for yourself to complete Project 1 will be posted in CoursePlus\n\n\n\n\n\n\nNote\n\n\n\nThis creates an empty repository. You will need to clone the reopository locally, add your code, and push your code from your local repo to the remote repository on GitHub Classroom when ready.\nPlease show all the code, if relevant to a section.\n\n\nThe TAs will grade the contents in the GitHub repo by cloning the repo and checking for all the things described below."
+  },
+  {
+    "objectID": "project1.html#create-a-github-repo-for-your-website",
+    "href": "project1.html#create-a-github-repo-for-your-website",
+    "title": "Project 1",
+    "section": "1. Create a GitHub repo for your website",
+    "text": "1. Create a GitHub repo for your website\nCreate a new public GitHub repository titled biostat777-intro-&lt;firstname&gt;-&lt;lastname&gt; (where you replace &lt;firstname&gt; with your first name and &lt;lastname&gt; with your last name) in your own personal GitHub account (e.g. https://github.com/&lt;yourgithubusername&gt;/biostat777-intro-&lt;firstname&gt;-&lt;lastname&gt;)."
+  },
+  {
+    "objectID": "project1.html#build-a-website-using-quarto",
+    "href": "project1.html#build-a-website-using-quarto",
+    "title": "Project 1",
+    "section": "2. Build a website using Quarto",
+    "text": "2. Build a website using Quarto\nCreate a new project locally within RStudio or VSCode and build a website for yourself. Your website should include the following:\n\nA home/landing page. This is home page that someone will land on your website. At minimum it should include your name, a short summary about yourself (max 2-3 sentences), and a picture of something you enjoy to do for fun (or a picture of yourself if you are comfortable sharing one).\nA page titled ‘About’. This page should describe who you are in greater detail. It could include your professional interests and your educational and/or professional background and/or experience. It could also include any personal information you feel conformable sharing on the website.\nA data analysis page called ‘Example analysis’. You can pick any dataset you wish you analyze. In this webpage, you will analyze a dataset and summarize the results. The requirements for this webpage are the following:\n\nYou must describe what is the question you aim to answer with the data and data analysis.\nYou must describe who is the intended audience for the data analysis.\nYou must describe and link to where the original data come from that you chose.\nYou must include a link to a data dictionary for the data or create one inside the webpage.\nYour analysis must include some minimal form of data wrangling with you using at least five different functions from dplyr or tidyr.\nYour analysis should include at least three plots with you using at least three different geom_*() functions from ggplot2 (or another package with geom_*() functions).\nPlots should have titles, subtitles, captions, and human-understandable axis labels.\nAt least one plot should using a type of faceting (facet_grid() or facet_wrap()).\nYour analysis must include one image or table (not one you created yourself, but one you have saved locally or one from the web).\nYour analysis must include at least two different callout blocks.\nYour analysis must include a .bib file, which you use to reference at least three unique citations. For example, it could be to a website or paper from where the original data came from or it could be to a paper describing a method you are using to analyze the data.\nYour analysis must include the use of at least 1 margin content.\nYou must summarize your analysis and/or results with a paragraph (4-6 sentences).\nAt the end of the data analysis, list out each of the functions you used from each of the packages (dplyr, tidyr, and ggplot2) to help the TA with respect to making sure you met all the requirements described above."
+  },
+  {
+    "objectID": "project1.html#include-a-readme.md-file",
+    "href": "project1.html#include-a-readme.md-file",
+    "title": "Project 1",
+    "section": "3. Include a README.md file",
+    "text": "3. Include a README.md file\nYour local repository should include a README.md file describing who is the author of the website and a link to the website after it has been deployed. Other things you might include are the technical details for how the website was created and/or deployed."
+  },
+  {
+    "objectID": "project1.html#deploy-your-website",
+    "href": "project1.html#deploy-your-website",
+    "title": "Project 1",
+    "section": "4. Deploy your website",
+    "text": "4. Deploy your website\nDeploy your website e.g. using Quarto Pub, GitHub pages, or Netlify, etc.\n\n\n\n\n\n\nNote\n\n\n\nDeploying your website to RPubs will not be accepted."
+  },
+  {
+    "objectID": "project1.html#share-your-website",
+    "href": "project1.html#share-your-website",
+    "title": "Project 1",
+    "section": "5. Share your website",
+    "text": "5. Share your website\nGo to the Discussion Board in CoursePlus and write a short post with a link (URL) to your website (and URL to the corresponding GitHub repository) that you created. Also, list the URLs below for the purposes of grading.\nAs you read the introductions from other folks in the class, feel free to comment/reply using Discussion board.\n\nLink to your GitHub repository: [Delete this text and replace the text with the link to the public GitHub repo you created above for your website]\nLink to your deployed website: [Delete this and replace the text with the link to the public deployed website you created above]"
+  },
+  {
+    "objectID": "example_analysis.html",
+    "href": "example_analysis.html",
+    "title": "Example Analysis",
+    "section": "",
+    "text": "The Global Burden of Diseases, Injuries, and Risk Factors Study (2021) ?? idk say more here.\nThis analysis uses data from the CDC Web-based Injury Statistics Query and Reporting System (WISQARS) [reference] on the number of cases and economic costs associated with various mechanisms of non-fatal injuries in 2023. The audience for this analysis are students, researchers, and those who are interested in understanding the magnitude of the economic and health burden of non-fatal injuries in the United States.\n\n\n\n\n\n\nWhich mechanisms of non-fatal injury were the most common in 2023?\nHow does the mechanism of non-fatal injury differ by gender in 2023?\n\n\nLoading packages\n\nlibrary(readr)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ purrr     1.1.0\n✔ forcats   1.0.0     ✔ stringr   1.5.2\n✔ ggplot2   4.0.0     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(dplyr)\n\nLoading data\n\ncosts &lt;- read_csv(\"cost-data-export.csv\")\n\nRows: 85 Columns: 11\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (11): Mechanism, Sex, ED Visits, Medical Costs Total, Medical Costs Aver...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ncases &lt;- read_csv(\"reports-data-export.csv\")\n\nRows: 87 Columns: 11\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (11): Sex, Mechanism, Estimated Number, Population, Crude Rate, Age-Adju...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  },
+  {
+    "objectID": "example_analysis.html#questions-of-interest",
+    "href": "example_analysis.html#questions-of-interest",
+    "title": "Example Analysis",
+    "section": "",
+    "text": "Which mechanisms of non-fatal injury were the most common in 2023?\nHow does the mechanism of non-fatal injury differ by gender in 2023?\n\n\nLoading packages\n\nlibrary(readr)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ purrr     1.1.0\n✔ forcats   1.0.0     ✔ stringr   1.5.2\n✔ ggplot2   4.0.0     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(dplyr)\n\nLoading data\n\ncosts &lt;- read_csv(\"cost-data-export.csv\")\n\nRows: 85 Columns: 11\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (11): Mechanism, Sex, ED Visits, Medical Costs Total, Medical Costs Aver...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ncases &lt;- read_csv(\"reports-data-export.csv\")\n\nRows: 87 Columns: 11\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (11): Sex, Mechanism, Estimated Number, Population, Crude Rate, Age-Adju...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  }
+]
