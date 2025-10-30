@@ -1,0 +1,33 @@
+---
+title: "Example Analysis"
+format: html
+---
+# Economic and Health Burden of Non-Fatal Injuries 
+
+The Global Burden of Diseases, Injuries, and Risk Factors Study (2021)  ?? idk say more here. 
+
+This analysis uses data from the CDC Web-based Injury Statistics Query and Reporting System (WISQARS) [reference] on the number of cases and economic costs associated with various mechanisms of non-fatal injuries in 2023. The audience for this analysis are students, researchers, and those who are interested in understanding the magnitude of the economic and health burden of non-fatal injuries in the United States. 
+
+## Data Dictionary
+
+
+
+## Questions of interest
+
+1. Which mechanisms of non-fatal injury were the most common in 2023? 
+2. How does the mechanism of non-fatal injury differ by gender in 2023? 
+3. 
+
+**Loading packages**
+```{r}
+library(readr)
+library(tidyverse)
+library(dplyr)
+```
+
+**Loading data**
+```{r}
+costs <- read_csv("cost-data-export.csv")
+cases <- read_csv("reports-data-export.csv")
+```
+
