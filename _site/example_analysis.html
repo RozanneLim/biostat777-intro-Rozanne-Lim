@@ -157,8 +157,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#economic-and-health-burden-of-non-fatal-injuries" id="toc-economic-and-health-burden-of-non-fatal-injuries" class="nav-link active" data-scroll-target="#economic-and-health-burden-of-non-fatal-injuries">Economic and Health Burden of Non-Fatal Injuries</a>
   <ul class="collapse">
-  <li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link" data-scroll-target="#data-dictionary">Data Dictionary</a></li>
+  <li><a href="#data-dictionaries" id="toc-data-dictionaries" class="nav-link" data-scroll-target="#data-dictionaries">Data Dictionaries</a></li>
   <li><a href="#questions-of-interest" id="toc-questions-of-interest" class="nav-link" data-scroll-target="#questions-of-interest">Questions of interest</a></li>
+  <li><a href="#setting-up-r-environment" id="toc-setting-up-r-environment" class="nav-link" data-scroll-target="#setting-up-r-environment">Setting up R Environment</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -187,10 +191,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="economic-and-health-burden-of-non-fatal-injuries" class="level1">
 <h1>Economic and Health Burden of Non-Fatal Injuries</h1>
-<p>The Global Burden of Diseases, Injuries, and Risk Factors Study (2021) ?? idk say more here.</p>
-<p>This analysis uses data from the CDC Web-based Injury Statistics Query and Reporting System (WISQARS) [reference] on the number of cases and economic costs associated with various mechanisms of non-fatal injuries in 2023. The audience for this analysis are students, researchers, and those who are interested in understanding the magnitude of the economic and health burden of non-fatal injuries in the United States.</p>
-<section id="data-dictionary" class="level2">
-<h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
+<p>This analysis uses data from the CDC Web-based Injury Statistics Query and Reporting System (WISQARS) [reference] on the number of cases and economic costs associated with various mechanisms of non-fatal injuries in 2023. The audience for this analysis are students, researchers, and those who are interested in understanding the magnitude of the economic and health burden of non-fatal injuries in the United States. The WISQARS dashboard and data repository combines data collected from the National Center for Health Statistics, U.S. Census Bureau, and National Electronic Injury Surveillance System.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Original data sources are linked here:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+</div>
+<section id="data-dictionaries" class="level2">
+<h2 class="anchored" data-anchor-id="data-dictionaries">Data Dictionaries</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Coding</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sex</td>
+<td>12</td>
+<td>M = Male</td>
+</tr>
+<tr class="even">
+<td>123</td>
+<td>123</td>
+<td>123</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>– indicates suppressed value (based on &lt;20 unweighted count, &lt;1,200 weighted count, or coefficient of variation of the estimate &gt;30%);</p>
+</div>
+</div>
 </section>
 <section id="questions-of-interest" class="level2">
 <h2 class="anchored" data-anchor-id="questions-of-interest">Questions of interest</h2>
@@ -199,46 +258,156 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>How does the mechanism of non-fatal injury differ by gender in 2023?</li>
 <li></li>
 </ol>
+</section>
+<section id="setting-up-r-environment" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-r-environment">Setting up R Environment</h2>
 <p><strong>Loading packages</strong></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ purrr     1.1.0
-✔ forcats   1.0.0     ✔ stringr   1.5.2
-✔ ggplot2   4.0.0     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Loading data</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>costs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cost-data-export.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>costs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cost-data-export.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"reports-data-export.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h2>
+<p>Before starting data analysis and data visualization, data wrangling is required to ensure that the datasets are in the desired format for better readability and analysis. This includes converting variables into the appropriate type (e.g, factor, numeric, string), merging, and removing rows/columns.</p>
+<p>Using the glimpse function allows us to see the structure of the dataset, and the formats for each of the variables. In both datasets below, all the variables are in the format ‘chr’ (characters).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cases)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 87
+Columns: 11
+$ Sex                 &lt;chr&gt; "Males", "Males", "Males", "Males", "Males", "Male…
+$ Mechanism           &lt;chr&gt; "Bite: Dog", "Bite: Other, including sting", "Cut/…
+$ `Estimated Number`  &lt;chr&gt; "205,938", "396,562", "1,185,770", "5,267", "4,116…
+$ Population          &lt;chr&gt; "165,749,400", "165,749,400", "165,749,400", "165,…
+$ `Crude Rate`        &lt;chr&gt; "124.25", "239.25", "715.40", "3.18", "2,483.76", …
+$ `Age-Adjusted Rate` &lt;chr&gt; "128.85", "246.51", "726.82", "3.52", "2,442.10", …
+$ `Cases (Sample)`    &lt;chr&gt; "5,370", "9,809", "28,654", "169", "108,567", "5,3…
+$ `Standard Error`    &lt;chr&gt; "12,415", "39,822", "71,234", "1,345", "329,026", …
+$ CV                  &lt;chr&gt; "6.0%", "10.0%", "6.0%", "25.5%", "8.0%", "8.1%", …
+$ `Lower 95% CI`      &lt;chr&gt; "181,604", "318,510", "1.05 M", "2,631", "3.47 M",…
+$ `Upper 95% CI`      &lt;chr&gt; "230,272", "474,614", "1.33 M", "7,903", "4.76 M",…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(costs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 85
+Columns: 11
+$ Mechanism                            &lt;chr&gt; "Bite: Dog", "Bite: Dog", "Bite: …
+$ Sex                                  &lt;chr&gt; "Males", "Females", "Unknown", "M…
+$ `ED Visits`                          &lt;chr&gt; "188,674", "186,200", NA, "357,45…
+$ `Medical Costs Total`                &lt;chr&gt; "$618.53 M", "$610.42 M", NA, "$1…
+$ `Medical Costs Average`              &lt;chr&gt; "$3,278", "$3,278", NA, "$3,278",…
+$ `Work Loss Costs Total`              &lt;chr&gt; "$43.74 M", "$43.17 M", NA, "$82.…
+$ `Work Loss Costs Average`            &lt;chr&gt; "$232", "$232", NA, "$232", "$232…
+$ `Quality of Life Loss Costs Total`   &lt;chr&gt; "$1.05 B", "$1.09 B", NA, "$3.73 …
+$ `Quality of Life Loss Costs Average` &lt;chr&gt; "$5,588", "$5,876", NA, "$10,441"…
+$ `Combined Costs Total`               &lt;chr&gt; "$1.72 B", "$1.75 B", NA, "$4.99 …
+$ `Combined Costs Average`             &lt;chr&gt; "$9,099", "$9,386", NA, "$13,952"…</code></pre>
+</div>
+</div>
+<p><strong>Cleaning Cases Data</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#converting categorical variables to factors, continuous rates to numeric variables, and removing columns that will not be used in the analysis, removing rows that are comment lines</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>clean_cases <span class="ot">&lt;-</span> cases <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">66</span><span class="sc">:</span><span class="dv">86</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sex =</span> <span class="fu">as.factor</span>(Sex),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mechanism =</span> <span class="fu">as.factor</span>(Mechanism),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">`</span><span class="at">Estimated Number</span><span class="st">`</span>, Population, <span class="st">`</span><span class="at">Crude Rate</span><span class="st">`</span>, <span class="st">`</span><span class="at">Age-Adjusted Rate</span><span class="st">`</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">str_remove_all</span>(.x, <span class="st">","</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="fu">c</span>(<span class="st">`</span><span class="at">Cases (Sample)</span><span class="st">`</span>, <span class="st">`</span><span class="at">Standard Error</span><span class="st">`</span>, CV, <span class="st">`</span><span class="at">Lower 95% CI</span><span class="st">`</span>, <span class="st">`</span><span class="at">Upper 95% CI</span><span class="st">`</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 85 Columns: 11
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (11): Mechanism, Sex, ED Visits, Medical Costs Total, Medical Costs Aver...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>Warning: There were 4 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(...)`.
+Caused by warning:
+! NAs introduced by coercion
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 3 remaining warnings.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"reports-data-export.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Cleaning Costs Data</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>clean_costs <span class="ot">&lt;-</span> costs <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">65</span><span class="sc">:</span><span class="dv">85</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sex =</span> <span class="fu">as.factor</span>(Sex),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mechanism =</span> <span class="fu">as.factor</span>(Mechanism),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">ED Visits</span><span class="st">`</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Medical Costs Average</span><span class="st">`</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Work Loss Costs Average</span><span class="st">`</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Quality of Life Loss Costs Average</span><span class="st">`</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Combined Costs Average</span><span class="st">`</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">str_remove_all</span>(.x, <span class="st">"[$,]"</span>))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Medical Costs Total</span><span class="st">`</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Work Loss Costs Total</span><span class="st">`</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Quality of Life Loss Costs Total</span><span class="st">`</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Combined Costs Total</span><span class="st">`</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(.x, <span class="st">"B"</span>) <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">str_remove_all</span>(.x, <span class="st">"[^0-9.]"</span>)) <span class="sc">*</span> <span class="dv">1000</span>,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(.x, <span class="st">"M"</span>) <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">str_remove_all</span>(.x, <span class="st">"[^0-9.]"</span>))</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 87 Columns: 11
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (11): Sex, Mechanism, Estimated Number, Population, Crude Rate, Age-Adju...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `across(...)`.
+Caused by warning:
+! NAs introduced by coercion</code></pre>
 </div>
 </div>
+<p><strong>Merging datasets</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>case_costs <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(clean_cases, clean_costs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Mechanism"</span>, <span class="st">"Sex"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
+<p><strong>Question 1: Which mechanisms of non-fatal injury were the most common in 2023?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>case_costs <span class="ot">&lt;-</span> case_costs <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Mechanism)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>case_costs <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Mechanism) <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_case =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Estimated Number</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_case)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Mechanism, <span class="at">y =</span> total_case)) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="example_analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Question 2: How does the mechanism of non-fatal injury differ by gender in 2023?</strong></p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
 
 
 </section>
