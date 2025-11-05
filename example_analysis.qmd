@@ -220,8 +220,11 @@ clean_cases %>%
 **Question 3: Which mechanisms have the highest economic burden associated with non-fatal injuries in 2023?**
 
 ```{r}
-clean_costs %>%
-  group_by(Sex, Mechanism) %>%
+ggplot(clean_costs, mapping = aes(x = Mechanism, y = `Combined Costs Average`))+
+  geom_col()+
+  
+  
+  
 
 ```
 
