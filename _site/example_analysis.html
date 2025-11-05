@@ -535,7 +535,7 @@ Important
 <section id="data-analysis" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
 <p><strong>Question 1: Which mechanisms of non-fatal injury were the most common in 2023?</strong></p>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">fjdfdj</span></div></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">This code uses dplyr and ggplot2 functions to create a bar graph displaying the top 10 most common mechanisms of non-fatal injury in 2023.</span></div></div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cl_total_mech <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Age-Adjusted Rate</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
@@ -575,6 +575,7 @@ Important
 </div>
 </div>
 <p><strong>Question 2: How does the mechanism of non-fatal injury differ by gender in 2023?</strong></p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">This code uses dplyr and ggplot2 functions to examine the top 10 mechanisms of non-fatal injury by sex in 2023.</span></div></div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cl_cases_sex <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sex) <span class="sc">%&gt;%</span></span>
@@ -623,6 +624,7 @@ Important
 </div>
 </div>
 <p><strong>Question 3: What is the trend of cases of non-fatal injuries between 2013-2023? How does it differ by sex?</strong></p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">This code uses ggplot2 to look at the trends in non-fatal injuries from 2013-2023, between males, females, and for all sexes.</span></div></div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  cl_case_year,</span>
@@ -669,6 +671,37 @@ Important
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>The purpose of this data analysis was to understand the scope of non-fatal injuries in the United States. This was done by examining the top 10 most common mechanisms by sex, and in the overall population, as well as looking at the trends in non-fatal injuries over time (from 2013-2023).</p>
+<p>The top 10 most common mechanisms for non-fatal injury in general, and by sex were the same:</p>
+<ol type="1">
+<li>Falls</li>
+<li>Struck by/ Against</li>
+<li>Motor Vehicle Occupant</li>
+<li>Poisoning</li>
+<li>Other Specified</li>
+<li>Cut/Pierce</li>
+<li>Overexertion</li>
+<li>Bite: Other/including sting</li>
+<li>Foreign Body</li>
+<li>Unknown/Unspecified</li>
+</ol>
+<p>Falls, were by far, the most common mechanism for non-fatal injuries. The least common mechanism for non-fatal injuries was by a BB/pellet gun.</p>
+<p>From 2013-2020, the age-adjusted rates for non-fatal injuries in the US has been declining, irregardless of sex. However, males contributed to a higher proportion of non-fatal injuries compared to females at all years (2013-2023). The lowest age-adjusted rate was in 2020, which could be attributed to quarantine procedures during the COVID-19 pandemic, restricting mobility and interaction between individuals. Between 2021 to 2023, the age-adjusted rates for non-fatal injuries have been increasing.</p>
+<p>There are several limitations of this data analysis. Firstly, the removal of the sex category “unknown”. There are numerous missing values associated with the sex category “unknown”, and so this category was removed for the purposes of this analysis. Additionally, mechanisms that were described as “Unknown/unspecified cause” were unable to be further elucidated. The latest data for year 2024 has not yet been made available, so the trend for 2024 cannot be determined.</p>
+<p>Currently, WISQARs data for non-fatal injuries is not available at the state and county level, due to low statistical power. Future analyses should focus on economic costs associated with different mechanisms of non-fatal injuries (are there any causes of non-fatal injury that have high economic costs but relatively low prevalence, or vice versa?), and the spatial distribution of non-fatal injuries by geographic region in the United States.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Mechanism Definitions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are interested in reading about how each mechanism was defined, check out <span class="citation" data-cites="WISQARS">National Center for Injury Prevention and Control (<a href="#ref-WISQARS" role="doc-biblioref">2025</a>)</span></p>
+</div>
+</div>
 </section>
 <section id="functions-used" class="level2">
 <h2 class="anchored" data-anchor-id="functions-used">Functions Used</h2>

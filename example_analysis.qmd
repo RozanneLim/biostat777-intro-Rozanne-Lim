@@ -189,7 +189,7 @@ cl_case_year <- bind_rows(cl_sex_year, cl_total_year)
 
 **Question 1: Which mechanisms of non-fatal injury were the most common in 2023?**
 
-[fjdfdj]{.aside}
+[This code uses dplyr and ggplot2 functions to create a bar graph displaying the top 10 most common mechanisms of non-fatal injury in 2023.]{.aside}
 
 ```{r}
 cl_total_mech %>%
@@ -228,7 +228,7 @@ cl_total_mech %>%
 
 **Question 2: How does the mechanism of non-fatal injury differ by gender in 2023?** 
 
-[fjdfdj]{.aside}
+[This code uses dplyr and ggplot2 functions to examine the top 10 mechanisms of non-fatal injury by sex in 2023.]{.aside}
 
 ```{r}
 cl_cases_sex %>%
@@ -273,7 +273,7 @@ cl_cases_sex %>%
 
 **Question 3: What is the trend of cases of non-fatal injuries between 2013-2023? How does it differ by sex?**
 
-[fjdfdj]{.aside}
+[This code uses ggplot2 to look at the trends in non-fatal injuries from 2013-2023, between males, females, and for all sexes.]{.aside}
 
 ```{r}
 ggplot(
@@ -315,6 +315,33 @@ ggplot(
 
 ## Results 
 
+The purpose of this data analysis was to understand the scope of non-fatal injuries in the United States. This was done by examining the top 10 most common mechanisms by sex, and in the overall population, as well as looking at the trends in non-fatal injuries over time (from 2013-2023). 
+
+The top 10 most common mechanisms for non-fatal injury in general, and by sex were the same: 
+
+1. Falls
+2. Struck by/ Against
+3. Motor Vehicle Occupant
+4. Poisoning
+5. Other Specified
+6. Cut/Pierce
+7. Overexertion
+8. Bite: Other/including sting
+9. Foreign Body
+10. Unknown/Unspecified 
+
+Falls, were by far, the most common mechanism for non-fatal injuries. The least common mechanism for non-fatal injuries was by a BB/pellet gun. 
+
+From 2013-2020, the age-adjusted rates for non-fatal injuries in the US has been declining, irregardless of sex. However, males contributed to a higher proportion of non-fatal injuries compared to females at all years (2013-2023). The lowest age-adjusted rate was in 2020, which could be attributed to quarantine procedures during the COVID-19 pandemic, restricting mobility and interaction between individuals. Between 2021 to 2023, the age-adjusted rates for non-fatal injuries have been increasing. 
+
+There are several limitations of this data analysis. Firstly, the   removal of the sex category "unknown". There are numerous missing values associated with the sex category "unknown", and so this category was removed for the purposes of this analysis. Additionally, mechanisms that were described as "Unknown/unspecified cause" were unable to be further elucidated. The latest data for year 2024 has not yet been made available, so the trend for 2024 cannot be determined. 
+
+Currently, WISQARs data for non-fatal injuries is not available at the state and county level, due to low statistical power. Future analyses should focus on economic costs associated with different mechanisms of non-fatal injuries (are there any causes of non-fatal injury that have high economic costs but relatively low prevalence, or vice versa?), and the spatial distribution of non-fatal injuries by geographic region in the United States. 
+
+::: {.callout-tip}
+## Mechanism Definitions
+If you are interested in reading about how each mechanism was defined, check out @WISQARS
+:::
 
 ## Functions Used 
 
