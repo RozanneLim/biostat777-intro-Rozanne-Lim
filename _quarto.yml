@@ -9,6 +9,7 @@ website:
         text: Home
       - about.qmd
       - example_analysis.qmd
+  back-to-top-navigation: true
 
 format:
   html:

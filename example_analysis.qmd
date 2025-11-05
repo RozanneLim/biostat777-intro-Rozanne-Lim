@@ -1,36 +1,81 @@
 ---
 title: "Example Analysis"
 format: html
-reference-location: margin
-citation-location: margin
+bibliography: references.bib
 ---
-# Economic and Health Burden of Non-Fatal Injuries 
+## Non-Fatal Injuries Over Time 
 
-![Injury](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cdc.gov%2Fsuicide%2Ffacts%2Fdata.html&psig=AOvVaw0nMrY2BFUYYHiG70LZJCtN&ust=1762371320932000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCJjl-_We2ZADFQAAAAAdAAAAABAE)
+::: {.callout-tip}
+## Non-Fatal Injury Definition
+Bodily harm resulting from severe exposure to an external force or substance (mechanical, thermal, electrical, chemical, or radiant) or a submersion. This bodily harm can be unintentional, or violence related. (@WISQARS)
+:::
 
-This analysis uses data from the CDC Web-based Injury Statistics Query and Reporting System (WISQARS) [reference] on the number of cases and economic costs associated with various mechanisms of non-fatal injuries in 2023. The audience for this analysis are students, researchers, and those who are interested in understanding the magnitude of the economic and health burden of non-fatal injuries in the United States. The WISQARS dashboard and data repository combines data collected from the National Center for Health Statistics, U.S. Census Bureau, and National Electronic Injury Surveillance System. 
 
+This analysis uses data from the CDC Web-based Injury Statistics Query and Reporting System (WISQARS) [@WISQARS] on the number of cases associated with various mechanisms of non-fatal injuries from 2013-2023. The audience for this analysis are students, researchers, and those who are interested in understanding the magnitude of the health burden of non-fatal injuries in the United States. The WISQARS dashboard and data repository combines data collected from the National Center for Health Statistics, U.S. Census Bureau, and National Electronic Injury Surveillance System-All Injury Program. 
+
+![@injury](https://www.safestates.org/resource/resmgr/Images/CPH_Injury_front_final.jpg)
 
 
 ::: {.callout-note}
-## Original data sources are linked here:
+## WISQARS Data Sources 
 
-- 
-- 
-- 
+- Non-fatal injury data from the WISQARS module is from the National Electronic Injury Surveillance System-All Injury Program (NEISS-AIP) operated by the @NEISS-AIP
+- Population estimates are produced by the U.S. Census Bureau 
+
 :::
+
 
 
 ## Data Dictionaries
 
-|Variable | Description | Coding | 
-|---------|-------------|--------|
-| Sex     | 12          |M = Male| 
-| 123     | 123         |   123  |
-| 1       | 1           |      1 | 
+**Sex-Specific Nonfatal Emergency Department Visits and Rates per 100,000 by Mechanism**
+
+| **Variable**      | **Description**                                                                                   | **Type**    |
+|-------------------|---------------------------------------------------------------------------------------------------|-------------|
+| Sex               | Sex, coded as Females, Males or Unknown                                                           | Categorical |
+| Mechanism         | Underlying cause of non-fatal injury; action that starts the injury event 22 different categories | Categorical |
+| Estimated number  | Estimated number of non-fatal injury cases in the population in 2023                              | Numeric     |
+| Population        | Size of population in 2023; data from the U.S. Census Bureau                                      | Numeric     |
+| Crude rate        | Estimated number / Population * 100,000                                                           | Numeric     |
+| Age-adjusted rate | Rate adjusted for age distribution                                                                | Numeric     |
+
+**Nonfatal Emergency Department Visits and Rates per 100,000 in 2023 by Mechanism**
+
+| **Variable**      | **Description**                                                                                   | **Type**    |
+|-------------------|---------------------------------------------------------------------------------------------------|-------------|
+| Mechanism         | Underlying cause of non-fatal injury; action that starts the injury event 22 different categories | Categorical |
+| Estimated Number  | Estimated number of non-fatal injury cases in the population in 2023                              | Numeric     |
+| Population        | Size of population in 2023, data from the U.S. Census Bureau                                      | Numeric     |
+| Crude Rate        | Estimated number / Population * 100,000                                                           | Numeric     |
+| Age-Adjusted Rate | Crude rate, adjusted for age distribution                                                         | Numeric     |
+
+
+**Nonfatal Emergency Department Visits and Rates per 100,000 from 2013-2023**
+
+| **Variable**      | **Description**                                                       | **Type** |
+|-------------------|-----------------------------------------------------------------------|----------|
+| Year              | Year (2013 - 2023)                                                    | Numeric  |
+| Estimated Number  | Estimated number of non-fatal injury cases in the population          | Numeric  |
+| Population        | Size of population in specific year, data from the U.S. Census Bureau | Numeric  |
+| Crude Rate        | Estimated number / Population * 100,000                               | Numeric  |
+| Age-Adjusted Rate | Crude rate, adjusted for age distribution                             | Numeric  |
+
+
+**Sex-Specific Nonfatal Emergency Department Visits and Rates per 100,000 from 2013-2023**
+
+| **Variable**      | **Description**                                                                 | **Type** |
+|-------------------|---------------------------------------------------------------------------------|----------|
+| Year              | Year (2013-2023)                                                                | Numeric  |
+| Sex               | Sex, coded as Females, Males or Unknown                                         | Factor   |
+| Estimated Number  | Estimated number of non-fatal injury cases in the population                    | Numeric  |
+| Population        | Size of population in specific year, data from the U.S. Census Bureau           | Numeric  |
+| Crude Rate        | Estimated number / Population * 100,000                                         | Numeric  |
+| Age-Adjusted Rate | Crude rate, adjusted for age distribution                                       | Numeric  |
+
 
 ::: {.callout-important}
--- indicates suppressed value (based on <20 unweighted count, <1,200 weighted count, or coefficient of variation of the estimate >30%);
+
+The CDC does not recommend using non-fatal firearm injury prevalence estimates at this time. There is a lack of precision for these estimates due to small sample sizes, and the fact that there is no current system that systematically collects data on firearm non-fatal injuries. 
 
 :::
 
@@ -38,7 +83,7 @@ This analysis uses data from the CDC Web-based Injury Statistics Query and Repor
 ## Questions of interest
 1. What were the top 10 mechanisms of non-fatal injury in 2023? 
 2. How does the top 10 mechanisms of non-fatal injury differ by gender in 2023? 
-3. Which mechanisms have the highest economic burden associated with non-fatal injuries in 2023?
+3. What is the trend in non-fatal injuries cases from 2013-2023? How does it differ by sex? 
 
 ## Setting up R Environment
 
@@ -54,29 +99,24 @@ library(forcats)
 **Loading data**
 ```{r}
 #| output: FALSE
-costs <- read_csv("cost-data-export.csv")
-cases <- read_csv("reports-data-export.csv")
-total <- read_csv("total_case.csv")
+cases_sex <- read_csv("reports-data-export.csv")
+total_mech <- read_csv("total_case.csv")
+sex_year <- read_csv("case_year.csv")
+total_year <- read_csv("total_case_year.csv")
 ```
 
 ## Data Wrangling 
 
 Before starting data analysis and data visualization, data wrangling is required to ensure that the datasets are in the desired format for better readability and analysis. This includes converting variables into the appropriate type (e.g, factor, numeric, string), merging, and removing rows/columns. 
 
-Using the glimpse function allows us to see the structure of the dataset, and the formats for each of the variables. In both datasets below, all the variables are in the format 'chr' (characters). 
-
-```{r}
-glimpse(cases)
-glimpse(costs)
-```
-
 **Cleaning Cases Data**
 ```{r}
 #| warning: FALSE
 
 #converting categorical variables to factors, continuous rates to numeric variables, and removing columns that will not be used in the analysis, removing rows that are comment lines, and Sex = Unknown
-clean_cases <- cases %>%
+cl_cases_sex <- cases_sex %>%
   slice(-c(66:87)) %>%
+  filter(Sex != "Unknown") %>%
   mutate(
     Sex = as.factor(Sex),
     Mechanism = as.factor(Mechanism),
@@ -87,55 +127,15 @@ clean_cases <- cases %>%
   ) %>%
   select(
     -c(`Cases (Sample)`, `Standard Error`, CV, `Lower 95% CI`, `Upper 95% CI`)
-  ) %>%
-  filter(Sex != "Unknown")
+  )
 
 ```
 
-**Cleaning Costs Data**  
+**Cleaning Total Cases by Mechanism Data**
 ```{r}
 #| warning: FALSE
 
-clean_costs <- costs %>%
-  slice(-c(65:85)) %>%
-  mutate(
-    Sex = as.factor(Sex),
-    Mechanism = as.factor(Mechanism),
-    across(
-      c(
-        `ED Visits`,
-        `Medical Costs Average`,
-        `Work Loss Costs Average`,
-        `Quality of Life Loss Costs Average`,
-        `Combined Costs Average`
-      ),
-      ~ as.numeric(str_remove_all(.x, "[$,]"))
-    )
-  ) %>%
-  mutate(
-    across(
-      c(
-        `Medical Costs Total`,
-        `Work Loss Costs Total`,
-        `Quality of Life Loss Costs Total`,
-        `Combined Costs Total`
-      ),
-      ~ case_when(
-        str_detect(.x, "B") ~ as.numeric(str_remove_all(.x, "[^0-9.]")) * 1000,
-        str_detect(.x, "M") ~ as.numeric(str_remove_all(.x, "[^0-9.]"))
-      )
-    )
-  ) %>%
-  filter(Sex != "Unknown")
-
-```
-
-**Cleaning Total Cases Data**
-
-```{r}
-#| warning: FALSE
-
-clean_total <- total %>%
+cl_total_mech <- total_mech %>%
   select(
     -c(`Cases (Sample)`, `Standard Error`, CV, `Lower 95% CI`, `Upper 95% CI`)
   ) %>%
@@ -143,12 +143,56 @@ clean_total <- total %>%
 
 ```
 
+**Cleaning Total Cases by Year & Sex Data**
+
+```{r}
+cl_sex_year <- sex_year %>%
+  slice(-c(34:55)) %>%
+  filter(Sex != "Unknown") %>%
+  mutate(
+    Sex = as.factor(Sex),
+    Year = as.integer(Year),
+    across(
+      c(`Estimated Number`, Population, `Crude Rate`, `Age-Adjusted Rate`),
+      ~ as.numeric(str_remove_all(.x, ","))
+    )
+  ) %>%
+  select(
+    -c(`Cases (Sample)`, `Standard Error`, CV, `Lower 95% CI`, `Upper 95% CI`)
+  )
+
+```
+
+**Cleaning Total Cases by Year Data**
+
+```{r}
+cl_total_year <- total_year %>%
+  slice(-c(12:33)) %>%
+  mutate(
+    Year = as.integer(Year)
+  ) %>%
+  select(
+    -c(`Cases (Sample)`, `Standard Error`, CV, `Lower 95% CI`, `Upper 95% CI`)
+  )
+```
+
+**Appending Total Cases by Year to Case by Year and Sex Data**
+
+```{r}
+cl_total_year <- cl_total_year %>%
+  mutate(Sex = factor("Total"))
+
+cl_case_year <- bind_rows(cl_sex_year, cl_total_year)
+```
+
 ## Data Analysis 
 
 **Question 1: Which mechanisms of non-fatal injury were the most common in 2023?**
 
+[fjdfdj]{.aside}
+
 ```{r}
-clean_total %>%
+cl_total_mech %>%
   arrange(desc(`Age-Adjusted Rate`)) %>%
   slice(1:10) %>%
   ggplot(
@@ -157,75 +201,141 @@ clean_total %>%
       y = fct_reorder(Mechanism, `Age-Adjusted Rate`)
     )
   ) +
-  geom_col() +
+  geom_col(fill = "#fa7e1e") +
   labs(
-    title = "Top 10 Mechanisms of Non-Fatal Injury in the United States in 2023",
+    title = "Top 10 Mechanisms of Non-Fatal Injury in the US in 2023",
     subtitle = "",
-    caption = "Data from CDC WISQARS",
+    caption = "Source: CDC WISQARS",
     y = "Mechanism",
     x = "Age-Adjusted Rate (per 100,000 persons)"
   ) +
   theme_minimal() +
   theme(
     axis.text.x = element_text(size = 10),
-    axis.title.x = element_text(size = 8, face = "bold"),
-    axis.title.y = element_text(size = 8, face = "bold"),
-    plot.title = element_text(size = 10, face = "bold"),
+    axis.title.x = element_text(size = 10, face = "bold"),
+    axis.title.y = element_text(size = 10, face = "bold"),
+    plot.title = element_text(size = 11, face = "bold"),
     plot.title.position = "plot",
     plot.subtitle = element_text(size = 9),
     legend.title = element_text(face = "bold"),
     legend.position = "bottom",
-    plot.caption = element_text(size = 5)
+    plot.caption = element_text(size = 8)
   )
 
 ```
 
 
+
 **Question 2: How does the mechanism of non-fatal injury differ by gender in 2023?** 
 
+[fjdfdj]{.aside}
+
 ```{r}
-clean_cases %>%
+cl_cases_sex %>%
   group_by(Sex) %>%
   slice_max(order_by = `Age-Adjusted Rate`, n = 10) %>% #new function I looked up to get the top 10 mechanism by Sex
   ungroup() %>%
   ggplot(
     mapping = aes(
       x = `Age-Adjusted Rate`,
-      y = fct_reorder(Mechanism, `Age-Adjusted Rate`)
+      y = fct_reorder(Mechanism, `Age-Adjusted Rate`),
+      fill = Sex
     )
   ) +
   geom_col() +
   facet_wrap(~Sex, nrow = 2, scales = "free_y") +
   labs(
-    title = "Top 10 Mechanisms of Non-Fatal Injury by Sex",
-    subtitle = "",
-    caption = "Data from CDC WISQARS",
+    title = "Top 10 Mechanisms of Non-Fatal Injury by Sex in the US in 2023",
+    subtitle = "Top 10 mechanisms of non-fatal injury out of 22 coded mechanisms",
+    caption = "Source: CDC WISQARS",
     y = "Mechanism",
     x = "Age-Adjusted Rate (per 100,000 persons)"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Males" = "#4f5bd5",
+      "Females" = "#fa7e1e"
+    )
   ) +
   theme_minimal() +
   theme(
     axis.text.x = element_text(size = 10),
-    axis.title.x = element_text(size = 8, face = "bold"),
-    axis.title.y = element_text(size = 8, face = "bold"),
-    plot.title = element_text(size = 10, face = "bold"),
+    axis.title.x = element_text(size = 9, face = "bold"),
+    axis.title.y = element_text(size = 9, face = "bold"),
+    plot.title = element_text(size = 11, face = "bold"),
     plot.title.position = "plot",
     plot.subtitle = element_text(size = 9),
     legend.title = element_text(face = "bold"),
     legend.position = "bottom",
-    plot.caption = element_text(size = 5)
+    plot.caption = element_text(size = 8)
   )
 ```
 
-**Question 3: Which mechanisms have the highest economic burden associated with non-fatal injuries in 2023?**
+**Question 3: What is the trend of cases of non-fatal injuries between 2013-2023? How does it differ by sex?**
+
+[fjdfdj]{.aside}
 
 ```{r}
-ggplot(clean_costs, mapping = aes(x = Mechanism, y = `Combined Costs Average`))+
-  geom_col()+
-  
-  
-  
-
+ggplot(
+  cl_case_year,
+  mapping = aes(x = Year, y = `Age-Adjusted Rate`, color = Sex)
+) +
+  geom_point() +
+  geom_line() +
+  labs(
+    title = "Non-Fatal Injury Trend in the US from 2013-2023",
+    subtitle = "Age-adjusted rates by sex and total population",
+    caption = "Source: CDC WISQARS",
+    y = 'Age-Adjusted Rate (per 100,000 persons)'
+  ) +
+  scale_color_manual(
+    values = c(
+      "Males" = "#4f5bd5",
+      "Females" = "#fa7e1e",
+      "Total" = "#419873"
+    )
+  ) +
+  scale_x_continuous(
+    breaks = seq(min(cl_case_year$Year), max(cl_case_year$Year), by = 1)
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(size = 10),
+    axis.title.x = element_text(size = 9, face = "bold"),
+    axis.title.y = element_text(size = 9, face = "bold"),
+    plot.title = element_text(size = 11, face = "bold"),
+    plot.title.position = "plot",
+    plot.subtitle = element_text(size = 9),
+    legend.title = element_text(size = 9, face = "bold"),
+    legend.position = "bottom",
+    plot.caption = element_text(size = 8)
+  )
 ```
 
+
 ## Results 
+
+
+## Functions Used 
+
+| **ggplot2**  | **dplyr**      | **forcats**     | **read_r**   | **string_r**       |
+|--------------|----------------|-----------------|--------------|--------------------|
+| `select()`   | `geom_col()`   | `fct_reorder()` | `read_csv()` | `str_remove_all()` |
+| `mutate()`   | `geom_line()`  |                 |              |                    |
+| `filter()`   | `geom_point()` |                 |              |                    |
+| `arrange()`  | `labs()`       |                 |              |                    |
+| `slice()`    | `facet_wrap()` |                 |              |                    |
+| `group_by()` | `theme()`      |                 |              |                    |
+| `ungroup()`  | `aes()`        |                 |              |                    |
+| `across()`   |                |                 |              |                    |
+
+
+
+## R Session Information
+
+```{r}
+options(width = 120)
+sessioninfo::session_info()
+```
+
+
