@@ -1,14 +1,15 @@
 ---
 title: "Rozanne Lim"
 about:
-  template: broadside
-image: "rozanne.jpg"
+  template: trestles
+  image: "rozanne.jpg"
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/RozanneLim 
+    - icon: e-mail
+      text: E-Mail
+      href: mailto:rlim8@jh.edu 
 ---
 Hello! I'm a graduate student in the MHS Epidemiology program at Johns Hopkins Bloomberg School of Public Health. I'm interested in data storytelling and using epidemiological data to advance public health initiatives. In my free time, I enjoy cooking, reading, and crafting.
-
-
-
-
-
-
 
