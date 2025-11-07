@@ -229,7 +229,6 @@ cl_total_mech %>%
 **Question 2: How does the mechanism of non-fatal injury differ by gender in 2023?** 
 
 [This code uses dplyr and ggplot2 functions to examine the top 10 mechanisms of non-fatal injury by sex in 2023.]{.aside}
-
 ```{r}
 cl_cases_sex %>%
   group_by(Sex) %>%
