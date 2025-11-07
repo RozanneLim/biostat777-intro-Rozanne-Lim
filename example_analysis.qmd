@@ -204,7 +204,7 @@ cl_total_mech %>%
   geom_col(fill = "#fa7e1e") +
   labs(
     title = "Top 10 Mechanisms of Non-Fatal Injury in the US in 2023",
-    subtitle = "",
+    subtitle = "Top 10 mechanisms of non-fatal injury out of 22 coded mechanisms",
     caption = "Source: CDC WISQARS",
     y = "Mechanism",
     x = "Age-Adjusted Rate (per 100,000 persons)"
